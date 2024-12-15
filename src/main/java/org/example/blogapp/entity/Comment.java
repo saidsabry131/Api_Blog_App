@@ -1,0 +1,34 @@
+package org.example.blogapp.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "comments")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Comment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+
+    private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id",referencedColumnName = "postId")
+    private Post post;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private User user;
+
+
+
+}
